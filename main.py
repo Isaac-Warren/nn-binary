@@ -102,9 +102,16 @@ for i in range(epoch):
 
 print(output)
 while True:
+    out = ""
     rawin = input("Binary in")
     if (rawin == "break"):
         break
-    xvalue = [int(x) for x in rawin.split()]
+    xvalue = [int(x) for x in rawin.split(",")]
     unpack = forwardpropagate(xvalue, lr, inputlayer_neurons, hiddenlayer_neurons, output_neurons, wh, bh, wout, bout)
-    print(unpack[0])
+    for x in unpack[0]:
+        if (x >= .5):
+            x = 1
+        else:
+            x = 0
+        out = out + str(x)
+    print(out)
