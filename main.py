@@ -17,8 +17,8 @@ def derivatives_sigmoid(x):
     return x * (1 - x)
 
 
-# Propogate
-def propogate(x, y, lr, inputlayer_neurons, hiddenlayer_neurons, output_neurons, wh, bh, wout, bout):
+# Propagate
+def propagate(x, y, lr, inputlayer_neurons, hiddenlayer_neurons, output_neurons, wh, bh, wout, bout):
     hidden_layer_input1 = np.dot(x, wh)
     hidden_layer_input = hidden_layer_input1 + bh
     hiddenlayer_activations = sigmoid(hidden_layer_input)
@@ -38,7 +38,7 @@ def propogate(x, y, lr, inputlayer_neurons, hiddenlayer_neurons, output_neurons,
     return (output, wh, bh, wout, bout)
 
 
-def forwardpropogate(x, inputlayer_neurons, lr, hiddenlayer_neurons, output_neurons, wh, bh, wout, bout):
+def forwardpropagate(x, inputlayer_neurons, lr, hiddenlayer_neurons, output_neurons, wh, bh, wout, bout):
     hidden_layer_input1 = np.dot(x, wh)
     hidden_layer_input = hidden_layer_input1 + bh
     hiddenlayer_activations = sigmoid(hidden_layer_input)
@@ -50,7 +50,7 @@ def forwardpropogate(x, inputlayer_neurons, lr, hiddenlayer_neurons, output_neur
 
 # User input variables
 transformer = float(input("Transformer?"))
-epoch = int(input("Epoches?"))
+epoch = int(input("Epochs?"))
 
 # Input/Output arrays, random binary integers for input, doubled for output
 x = np.array([[0, 0, 0, 0, 0, 0, 0, 0]])
@@ -92,7 +92,7 @@ wout = np.random.uniform(size=(hiddenlayer_neurons, output_neurons))
 bout = np.random.uniform(size=(1, output_neurons))
 
 for i in range(epoch):
-    # Propogation
+    # Propagation
     unpack = propogate(x, y, lr, inputlayer_neurons, hiddenlayer_neurons, output_neurons, wh, bh, wout, bout)
     output = unpack[0]
     wh = unpack[1]
