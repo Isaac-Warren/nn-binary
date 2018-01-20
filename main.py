@@ -93,7 +93,7 @@ bout = np.random.uniform(size=(1, output_neurons))
 
 for i in range(epoch):
     # Propagation
-    unpack = propogate(x, y, lr, inputlayer_neurons, hiddenlayer_neurons, output_neurons, wh, bh, wout, bout)
+    unpack = propagate(x, y, lr, inputlayer_neurons, hiddenlayer_neurons, output_neurons, wh, bh, wout, bout)
     output = unpack[0]
     wh = unpack[1]
     bh = unpack[2]
@@ -106,5 +106,5 @@ while True:
     if (rawin == "break"):
         break
     xvalue = [int(x) for x in rawin.split()]
-    unpack = forwardpropogate(xvalue, lr, inputlayer_neurons, hiddenlayer_neurons, output_neurons, wh, bh, wout, bout)
+    unpack = forwardpropagate(xvalue, lr, inputlayer_neurons, hiddenlayer_neurons, output_neurons, wh, bh, wout, bout)
     print(unpack[0])
