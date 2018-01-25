@@ -171,16 +171,19 @@ def solve():
     for e in range(8):
         for i in range(8):
             c = unpack[2][e][i]
-            c=c+unpack[3][0][e]
-            c = int(255 - (c * 255 * x[0,e]))
+            c = 255 - (c * 255 * x[0,e])
+            c = int(c + unpack[3][0][e])
             if c <= 0:
                 c=0
             mainloop.app.canvas.create_line(260,(e*70)+70,650,(i*70)+70,fill="#%02x%02x%02x" % (c, c, c))
     for e in range(8):
         for i in range(8):
+
             c = unpack[4][e][i]
-            c=c+unpack[5][0][e]
-            c = int(255 - (c * 255 * hiddenlayer_activations[0,e]))
+            c = 255 - (c * 255 * hiddenlayer_activations[0,e])
+            c=int(c+unpack[5][0][e])
+
+            print(c)
             if c <= 0:
                 c=0
             mainloop.app.canvas.create_line(650,(e*70)+70,1020,(i*70)+70,fill="#%02x%02x%02x" % (c, c, c))
