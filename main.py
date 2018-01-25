@@ -46,8 +46,8 @@ def forwardpropagate(x, inputlayer_neurons, lr, hiddenlayer_neurons, output_neur
     output_layer_input1 = np.dot(hiddenlayer_activations, wout)
     output_layer_input = output_layer_input1 + bout
     output = sigmoid(output_layer_input)
+    print(hidden_layer_input)
     return [output, hiddenlayer_activations]
-
 
 def train():
     # Variable initialization
@@ -121,14 +121,14 @@ def solve():
         else:
             txtoutput = txtoutput + "0"
     mainloop.app.solvelabel.configure(text=txtoutput)
-    f1 = int(output[0,0]* 255)
-    f2 = int(output[0,1] * 255)
-    f3 = int(output[0,2] * 255)
-    f4 = int(output[0,3] * 255)
-    f5 = int(output[0,4] * 255)
-    f6 = int(output[0,5] * 255)
-    f7 = int(output[0,6] * 255)
-    f8 = int(output[0,7] * 255)
+    f1 = int(255-(output[0,0]* 255))
+    f2 = int((255-output[0,1] * 255))
+    f3 = int((255-output[0,2] * 255))
+    f4 = int((255-output[0,3] * 255))
+    f5 = int((255-output[0,4] * 255))
+    f6 = int((255-output[0,5] * 255))
+    f7 = int((255-output[0,6] * 255))
+    f8 = int((255-output[0,7] * 255))
     mainloop.app.canvas.itemconfig(mainloop.app.foval1, fill ="#%02x%02x%02x" % (f1, f1, f1))
     mainloop.app.canvas.itemconfig(mainloop.app.foval2, fill="#%02x%02x%02x" % (f2, f2, f2))
     mainloop.app.canvas.itemconfig(mainloop.app.foval3, fill="#%02x%02x%02x" % (f3, f3, f3))
@@ -137,14 +137,14 @@ def solve():
     mainloop.app.canvas.itemconfig(mainloop.app.foval6, fill="#%02x%02x%02x" % (f6, f6, f6))
     mainloop.app.canvas.itemconfig(mainloop.app.foval7, fill="#%02x%02x%02x" % (f7, f7, f7))
     mainloop.app.canvas.itemconfig(mainloop.app.foval8, fill="#%02x%02x%02x" % (f8, f8, f8))
-    m1 = int(hiddenlayer_activations[0,0] * 255)
-    m2 = int(hiddenlayer_activations[0,1] * 255)
-    m3 = int(hiddenlayer_activations[0,2] * 255)
-    m4 = int(hiddenlayer_activations[0,3] * 255)
-    m5 = int(hiddenlayer_activations[0,4] * 255)
-    m6 = int(hiddenlayer_activations[0,5] * 255)
-    m7 = int(hiddenlayer_activations[0,6] * 255)
-    m8 = int(hiddenlayer_activations[0,7] * 255)
+    m1 = int((255-hiddenlayer_activations[0,0] * 255))
+    m2 = int((255-hiddenlayer_activations[0,1] * 255))
+    m3 = int((255-hiddenlayer_activations[0,2] * 255))
+    m4 = int((255-hiddenlayer_activations[0,3] * 255))
+    m5 = int((255-hiddenlayer_activations[0,4] * 255))
+    m6 = int((255-hiddenlayer_activations[0,5] * 255))
+    m7 = int((255-hiddenlayer_activations[0,6] * 255))
+    m8 = int((255-hiddenlayer_activations[0,7] * 255))
     mainloop.app.canvas.itemconfig(mainloop.app.moval1, fill="#%02x%02x%02x" % (m1, m1, m1))
     mainloop.app.canvas.itemconfig(mainloop.app.moval2, fill="#%02x%02x%02x" % (m2, m2, m2))
     mainloop.app.canvas.itemconfig(mainloop.app.moval3, fill="#%02x%02x%02x" % (m3, m3, m3))
@@ -153,14 +153,14 @@ def solve():
     mainloop.app.canvas.itemconfig(mainloop.app.moval6, fill="#%02x%02x%02x" % (m6, m6, m6))
     mainloop.app.canvas.itemconfig(mainloop.app.moval7, fill="#%02x%02x%02x" % (m7, m7, m7))
     mainloop.app.canvas.itemconfig(mainloop.app.moval8, fill="#%02x%02x%02x" % (m8, m8, m8))
-    o1 = (x[0,0]) * 255
-    o2 = (x[0,1]) * 255
-    o3 = (x[0,2]) * 255
-    o4 = (x[0,3]) * 255
-    o5 = (x[0,4]) * 255
-    o6 = (x[0,5]) * 255
-    o7 = (x[0,6]) * 255
-    o8 = (x[0,7]) * 255
+    o1 = (255-(x[0,0]) * 255)
+    o2 = (255-(x[0,1]) * 255)
+    o3 = (255-(x[0,2]) * 255)
+    04 = (255-(x[0,3]) * 255)
+    o5 = (255-(x[0,4]) * 255)
+    o6 = (255-(x[0,5]) * 255)
+    o7 = (255-(x[0,6]) * 255)
+    o8 = (255-(x[0,7]) * 255)
     mainloop.app.canvas.itemconfig(mainloop.app.ooval1, fill="#%02x%02x%02x" % (o1, o1, o1))
     mainloop.app.canvas.itemconfig(mainloop.app.ooval2, fill="#%02x%02x%02x" % (o2, o2, o2))
     mainloop.app.canvas.itemconfig(mainloop.app.ooval3, fill="#%02x%02x%02x" % (o3, o3, o3))
@@ -257,10 +257,3 @@ def mainloop():
 
 
 mainloop()
-
-
-
-
-
-
-
