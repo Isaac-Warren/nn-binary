@@ -66,7 +66,7 @@ def train():
     train.wout = np.random.uniform(size=(train.hiddenlayer_neurons, train.output_neurons))
     train.bout = np.random.uniform(size=(1, train.output_neurons))
 
-    for i in range(1000):
+    for i in range(clicked2.epoch):
         randi = random.randint(0, 255)
         randidub = int(randi * clicked1.transformer)
         randb = inttobin(randi)
@@ -97,7 +97,6 @@ def train():
         train.bh = unpack[2]
         train.wout = unpack[3]
         train.bout = unpack[4]
-        print(output)
 def solve():
     ltxtoutput = [0,0,0,0,0,0,0,0]
     txtoutput =""
@@ -183,7 +182,6 @@ def solve():
             c = 255 - (c * 255 * hiddenlayer_activations[0,e])
             c=int(c+unpack[5][0][e])
 
-            print(c)
             if c <= 0:
                 c=0
             mainloop.app.canvas.create_line(650,(e*70)+70,1020,(i*70)+70,fill="#%02x%02x%02x" % (c, c, c))
