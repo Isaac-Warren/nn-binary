@@ -46,8 +46,7 @@ def forwardpropagate(x, inputlayer_neurons, lr, hiddenlayer_neurons, output_neur
     output_layer_input1 = np.dot(hiddenlayer_activations, wout)
     output_layer_input = output_layer_input1 + bout
     output = sigmoid(output_layer_input)
-    print(hidden_layer_input)
-    return [output, hiddenlayer_activations]
+    return [output, hiddenlayer_activations,wh,bh,wout,bout]
 
 def train():
     # Variable initialization
@@ -156,7 +155,7 @@ def solve():
     o1 = (255-(x[0,0]) * 255)
     o2 = (255-(x[0,1]) * 255)
     o3 = (255-(x[0,2]) * 255)
-    04 = (255-(x[0,3]) * 255)
+    o4 = (255-(x[0,3]) * 255)
     o5 = (255-(x[0,4]) * 255)
     o6 = (255-(x[0,5]) * 255)
     o7 = (255-(x[0,6]) * 255)
@@ -169,7 +168,22 @@ def solve():
     mainloop.app.canvas.itemconfig(mainloop.app.ooval6, fill="#%02x%02x%02x" % (o6, o6, o6))
     mainloop.app.canvas.itemconfig(mainloop.app.ooval7, fill="#%02x%02x%02x" % (o7, o7, o7))
     mainloop.app.canvas.itemconfig(mainloop.app.ooval8, fill="#%02x%02x%02x" % (o8, o8, o8))
-
+    for e in range(8):
+        for i in range(8):
+            c = unpack[2][e][i]
+            c=c+unpack[3][0][e]
+            c = int(255 - (c * 255 * x[0,e]))
+            if c <= 0:
+                c=0
+            mainloop.app.canvas.create_line(260,(e*70)+70,650,(i*70)+70,fill="#%02x%02x%02x" % (c, c, c))
+    for e in range(8):
+        for i in range(8):
+            c = unpack[4][e][i]
+            c=c+unpack[5][0][e]
+            c = int(255 - (c * 255 * hiddenlayer_activations[0,e]))
+            if c <= 0:
+                c=0
+            mainloop.app.canvas.create_line(650,(e*70)+70,1020,(i*70)+70,fill="#%02x%02x%02x" % (c, c, c))
 
 
 
