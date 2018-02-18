@@ -118,6 +118,7 @@ def solve():
             txtoutput = txtoutput + "1"
         else:
             txtoutput = txtoutput + "0"
+    #result determination and coloring of neural net visualization based on activations
     mainloop.app.solvelabel.configure(text=txtoutput)
     f1 = int(255-(output[0,0]* 255))
     f2 = int((255-output[0,1] * 255))
@@ -190,6 +191,7 @@ def solve():
 
 
 #GUI
+#text input
 def clicked1():
     clicked1.transformer = int(mainloop.app.transformertxt.get())
 
@@ -203,6 +205,7 @@ class Base(tkinter.Frame):
         self.initUI()
 
     def initUI(self):
+        #color variables
         o1 = 255
         o2 = 255
         o3 = 255
@@ -213,6 +216,7 @@ class Base(tkinter.Frame):
         o8 = 255
         self.master.title("nn-binary")
         self.pack(fill="both", expand=1)
+        #UI components
         transformerlabel = tkinter.Label(self, text="Transformer")
         transformerlabel.grid(column=0, row =0)
         self.transformertxt = tkinter.Entry(self, width=2)
@@ -234,6 +238,7 @@ class Base(tkinter.Frame):
         trainbtn = tkinter.Button(self, text="Train", command=train)
         trainbtn.grid(column=2, row =1)
         self.canvas = tkinter.Canvas(self, width=1280, height=640)
+        #neural network visualization
         self.canvas.place(x=0, y=80)
         self.ooval1 = self.canvas.create_oval(240, 50, 280, 90, fill="#%02x%02x%02x" % (255,255,255))
         self.ooval2 = self.canvas.create_oval(240, 120, 280, 160, fill="#%02x%02x%02x" % (255,255,255))
@@ -264,6 +269,7 @@ class Base(tkinter.Frame):
         self.foval7 = self.canvas.create_oval(mx1, 470, mx2, 510, fill="#%02x%02x%02x" % (o7, o7, o7))
         self.foval8 = self.canvas.create_oval(mx1, 540, mx2, 580, fill="#%02x%02x%02x" % (o8, o8, o8))
 
+#window setup
 def mainloop():
     root= tkinter.Tk()
     root.geometry("1280x720+400+400")
