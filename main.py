@@ -50,7 +50,8 @@ def forwardpropagate(x, inputlayer_neurons, lr, hiddenlayer_neurons, output_neur
 
 def train():
     # Variable initialization
-
+    transformer = int(mainloop.app.transformertxt.get())
+    epoch = int(mainloop.app.epochtxt.get())
     # Input/Output arrays, random binary integers for input, doubled for output
     x = np.array([[0, 0, 0, 0, 0, 0, 0, 0]])
     y = np.array([[0, 0, 0, 0, 0, 0, 0, 0]])
@@ -66,9 +67,9 @@ def train():
     train.wout = np.random.uniform(size=(train.hiddenlayer_neurons, train.output_neurons))
     train.bout = np.random.uniform(size=(1, train.output_neurons))
 
-    for i in range(clicked2.epoch):
+    for i in range(epoch):
         randi = random.randint(0, 255)
-        randidub = int(randi * clicked1.transformer)
+        randidub = int(randi * transformer)
         randb = inttobin(randi)
         randbdub = inttobin(randidub)
         randba = np.array([])
@@ -89,7 +90,7 @@ def train():
         y = np.block([[y], [randbduba]])
 
 
-    for i in range(clicked2.epoch):
+    for i in range(epoch):
         # Propagation
         unpack = propagate(x, y, train.lr, train.inputlayer_neurons, train.hiddenlayer_neurons, train.output_neurons, train.wh, train.bh, train.wout, train.bout)
         output = unpack[0]
@@ -191,13 +192,6 @@ def solve():
 
 
 #GUI
-#text input
-def clicked1():
-    clicked1.transformer = int(mainloop.app.transformertxt.get())
-
-def clicked2():
-    clicked2.epoch = int(mainloop.app.epochtxt.get())
-
 class Base(tkinter.Frame):
     def __init__(self):
         super().__init__()
@@ -221,8 +215,6 @@ class Base(tkinter.Frame):
         transformerlabel.grid(column=0, row =0)
         self.transformertxt = tkinter.Entry(self, width=2)
         self.transformertxt.grid(column=0, row=1)
-        transformerbtn = tkinter.Button(self, text="Enter", command=clicked1)
-        transformerbtn.grid(column=0, row=2)
         solvebtn = tkinter.Button(self, text="Solve", command=solve)
         solvebtn.grid(column=16, row=1)
         self.solvelabel = tkinter.Label(self)
@@ -233,8 +225,6 @@ class Base(tkinter.Frame):
         self.epochtxt.grid(column=1, row=1)
         self.solvetxt = tkinter.Entry(self, width=10)
         self.solvetxt.grid(column=15, row=1)
-        epochbtn = tkinter.Button(self, text="Enter", command=clicked2)
-        epochbtn.grid(column=1, row=2)
         trainbtn = tkinter.Button(self, text="Train", command=train)
         trainbtn.grid(column=2, row =1)
         self.canvas = tkinter.Canvas(self, width=1280, height=640)
